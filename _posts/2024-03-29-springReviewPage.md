@@ -7,5 +7,6 @@ categories: [Spring, Basic]
 tags: [Spring, Backend]
 ---
 
-[spiring 댓글 작성 기능 1](https://devbmoooo.tistory.com/2)
-[spiring 댓글 작성 기능 2](https://haaland09009.tistory.com/229)
+[spring 댓글 작성 기능 1](https://devbmoooo.tistory.com/2)
+[spring 댓글 작성 기능 2](https://haaland09009.tistory.com/229)
+[spring 댓글 작성 기능 3](https://memme.tistory.com/98)
