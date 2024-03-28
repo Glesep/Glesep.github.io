@@ -72,3 +72,6 @@ MVC & 템플릿 이용 방식과는 다르게 viewResolver를 사용하지 않�
 >2. 톰켓 서버에서 url에서 얻은 정보를 스프링 컨테이너로 전달
 >3. 스프링 컨테이너에 있는 컨트롤러(helloController)에서 @ResponseBody 발견 후 hello 객체를 HttpMessageConverter로 전달
 >4. 객체를 JSON 파일 형식으로 변환 후 웹 브라우저로 전달 
+
+<br>
+출처 : [김영한, 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8)
