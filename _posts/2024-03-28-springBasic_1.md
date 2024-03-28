@@ -1,14 +1,14 @@
 ---
 title: 스프링 기초 - Hello 페이지 만들기 [MVC & 템플릿]
 description: >-
-    MVC & 템플릿 방식으로 Hello 페이지를 만들어봅니다.<br>  
-    출처 : [김영한, 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8
+    MVC & 템플릿 방식으로 Hello 페이지를 만들어봅니다.
 author: Glesep
 categories: [Spring, Backend]
 tags: [Spring, Backend]
 ---
 ## MVC란?
-MVC는 Model, View, Controller의 약자로 이 세가지 요소를 이용해서 웹페이지를 만든다.
+MVC는 Model, View, Controller의 약자이다.   
+이 세가지 요소를 이용해서 웹페이지를 만든다.
 
 ## Controller 작성
 ```java
@@ -44,7 +44,10 @@ MVC는 Model, View, Controller의 약자로 이 세가지 요소를 이용해서
 
 ## 작동 원리
 > 1. 웹 브라우저에서 url 전송
-> 2. 톰켓 서버에서 url을 받고 그 안의 정보들을 helloController에 전달.
+> 2. 톰켓 서버에서 url을 받고 그 안의 정보들을 helloController에 전달
 > 3. return: hello, model(data, spring!!) 값들을 viewResolver에 전달
 > 4. templates/hello.html 파일을 찾아 템플릿 처리
+
+
+출처 : [김영한, 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8)
     
