@@ -3,7 +3,7 @@ title: 스프링 기초 - Hello 페이지 만들기 [정적 컨텐츠]
 description: >-
     정적 컨텐츠로 Hello 페이지를 만들어봅니다.
 author: Glesep
-categories: [Spring, Backend]
+categories: [Spring, Basic]
 tags: [Spring, Backend]
 ---
 
@@ -22,7 +22,7 @@ tags: [Spring, Backend]
     </html>
 ```
 
-## 작동 원리
+### 작동 원리
 >1. 웹 브라우저에서 톰켓 서버에 url을 전달한다.
 >2. 톰켓 서버에서 받은 정보를 스프링 컨테이너에 전달한다.
 >3. hello-static 관련 컨트롤러가 없다고 판단, resources: static/hello-static.html 파일에 접근한다.
