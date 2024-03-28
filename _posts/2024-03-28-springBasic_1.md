@@ -7,6 +7,8 @@ author: Glesep
 categories: [Spring, Backend]
 tags: [Spring, Backend]
 ---
+## MVC란?
+MVC는 Model, View, Controller의 약자로 이 세가지 요소를 이용해서 웹페이지를 만든다.
 
 ## Controller 작성
 ```java
