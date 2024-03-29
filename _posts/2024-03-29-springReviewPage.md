@@ -11,4 +11,5 @@ tags: [Spring, Backend]
 [spring 댓글 작성 기능 2](https://haaland09009.tistory.com/229)  
 [spring 댓글 작성 기능 3](https://memme.tistory.com/98)  
 [spring 댓글 작성 기능 4](https://srk911028.tistory.com/207)  
-[spring 댓글 작성 기능 4](https://congsong.tistory.com/15?category=749196)
+[spring 댓글 작성 기능 4](https://congsong.tistory.com/15?category=749196)  
+[spring 댓글 작성 기능 4](https://blog.naver.com/inajjang97/221574710920)
