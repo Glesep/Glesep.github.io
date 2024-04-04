@@ -8,4 +8,4 @@ tags: [Spring, Backend]
 ---
 
 ## 링크
-[Spring Entity & Repository](https://whitepro.tistory.com/265)
+[Spring Entity & Repository](https://whitepro.tistory.com/265)  
