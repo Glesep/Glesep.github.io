@@ -98,21 +98,21 @@
 <footer class="foot">
   <div class="foot__inner">
     <span class="foot__left">
-      &copy; {{ site.time | date: '%Y' }} {{ a.name | default: site.title }}
-      {%- comment -%}
-        Visit counter. hits.sh counts a hit each time the badge image is
-        fetched - no account, no script, nothing stored on our side.
-      {%- endcomment -%}
-      <a class="foot__hits" href="https://hits.sh/glesep.github.io/" rel="nofollow">
-        <img src="https://hits.sh/glesep.github.io.svg?style=flat-square&amp;label=visits&amp;color=8C2B3D&amp;labelColor=635659"
-             alt="Visit counter" width="94" height="20" loading="lazy">
-      </a>
+      <span>&copy; {{ site.time | date: '%Y' }} {{ a.name | default: site.title }}</span>
+      <span class="foot__credit">
+        Built with <a href="https://jekyllrb.com/" rel="nofollow">Jekyll</a>,
+        forked from <a href="https://github.com/academicpages/academicpages.github.io">academicpages</a>.
+        Icons by <a href="https://fontawesome.com/" rel="nofollow">Font Awesome</a>.
+      </span>
     </span>
-    <span class="foot__credit">
-      Built with <a href="https://jekyllrb.com/" rel="nofollow">Jekyll</a>,
-      forked from <a href="https://github.com/academicpages/academicpages.github.io">academicpages</a>.
-      Icons by <a href="https://fontawesome.com/" rel="nofollow">Font Awesome</a>.
-    </span>
+    {%- comment -%}
+      Visit counter. hits.sh counts a hit each time the badge image is
+      fetched - no account, no script, nothing stored on our side.
+    {%- endcomment -%}
+    <a class="foot__hits" href="https://hits.sh/glesep.github.io/" rel="nofollow">
+      <img src="https://hits.sh/glesep.github.io.svg?style=flat-square&amp;label=visits&amp;color=8C2B3D&amp;labelColor=635659"
+           alt="Visit counter" width="94" height="20" loading="lazy">
+    </a>
   </div>
 </footer>
 

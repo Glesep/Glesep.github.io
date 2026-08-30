@@ -382,10 +382,21 @@ a:hover { text-decoration-color: var(--accent-soft); }
   flex-wrap: wrap;
   gap: .75rem;
 }
-.foot__credit { text-align: right; }
-.foot__left { display: inline-flex; align-items: center; gap: .6rem; }
+/* Copyright and credit read as one line; they wrap together on narrow
+   screens rather than the credit jumping to the far edge. */
+.foot__left {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .35rem 1rem;
+}
 /* The badge carries its own underline-free link styling. */
-.foot__hits { display: inline-flex; text-decoration: none; }
+.foot__hits {
+  display: inline-flex;
+  align-self: center;
+  flex: none;
+  text-decoration: none;
+}
 .foot__hits img { display: block; height: 1.25em; width: auto; }
 .foot a {
   color: inherit;
