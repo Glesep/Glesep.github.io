@@ -1,5 +1,6 @@
 # ---------------------------------------------------------------------------
-# Profile shown in the sidebar of _layouts/home.html.
+# Profile shown in the top bar of _layouts/home.html and in the About hero
+# at the top of _pages/about.md.
 #
 # This lives in _data/ rather than _config.yml on purpose: Jekyll reloads
 # _data files while `jekyll serve` is running, but reads _config.yml only once
@@ -7,20 +8,20 @@
 # ---------------------------------------------------------------------------
 
 name:    "Sang Yeon Yoon"
-# Two fields so the line always breaks after the role, rather than wherever
-# the sidebar happens to run out of room.
+# Two fields rather than one string: the About hero joins them as
+# "<role>, <affiliation>", and either can be dropped on its own.
 role:        "Undergraduate"
 affiliation: "Pukyong National University"
 photo:   /images/profile.jpg      # site-root path, or leave blank for a placeholder
 
-# Sidebar links. Only the ones with a value are rendered, in this order.
+# Contact links under the About text. Only the ones with a value are rendered.
 email:    "yskite09@gmail.com"
 github:   "Glesep"                # username only
 linkedin: "sang-yeon-yoon-96316241b"  # username only, the part after
                                       # linkedin.com/in/ . Blank = no link.
 
-# Kept out of the sidebar for now. Fill one in, then uncomment its line in
-# the Liquid comment block in _layouts/home.html to bring it back.
+# Kept out of the link row for now. Fill one in, then uncomment its line in
+# the Liquid comment block inside the .about-links paragraph of _pages/about.md.
 scholar:                          # full URL
 orcid:                            # full URL
 cv:                               # e.g. /files/cv.pdf

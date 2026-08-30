@@ -13,8 +13,11 @@
 #   authors     Author list. Bold yourself with **Your Name**; mark equal
 #               contribution with a trailing asterisk: **Your Name**\*, A. Lee\*
 #   venue       Where it appeared, e.g. "ACL 2026" or "arXiv preprint".
-#   year        Shown in the left margin. Required.
-#   badge       Optional short tag next to the venue: "Oral", "Spotlight".
+#   year        Required. Used as the pill text when neither tag nor badge is
+#               set.
+#   tag         Optional short label for the pill at the top of the card, e.g.
+#               "ICML 2026 Workshop". Falls back to badge, then year.
+#   badge       Optional status appended to the pill: "Oral", "Spotlight".
 #   media       Optional teaser, site-root path: /images/papers/foo.png
 #   media_type  "image" (default) or "video"
 #   links       Only keys with a value are rendered, always in this order:
@@ -43,8 +46,8 @@
   authors: "Sohyeon Kim, **Sang Yeon Yoon**, Kyeongbo Kong†"
   venue: "ICML Workshop AIWILD, Jul. 2026"
   year: 2026
-  ref: "W1"
-  group: "International Workshop Papers"
+  tag: "ICML 2026 Workshop"
+  group: "Workshop"
   media: /images/papers/aiwild-method.png
   media_type: image
   links:

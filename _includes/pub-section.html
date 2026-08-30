@@ -10,6 +10,7 @@
   {%- assign entries = all | where: "section", include.section -%}
   {%- if entries.size > 0 -%}
 <section id="{{ include.id }}">
+<div class="container">
   <h2 class="section__hd">{{ include.title }}</h2>
 
   <p class="pub__legend">*: Equal contribution, &dagger;: Corresponding author</p>
@@ -25,6 +26,7 @@
     {%- endfor -%}
   </div>
   {%- endfor %}
+</div>
 </section>
   {%- endif -%}
 {%- endif -%}

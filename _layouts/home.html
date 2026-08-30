@@ -34,39 +34,12 @@
 
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="frame">
-
-  {%- comment -%} ── left rail: identity + sticky table of contents ── {%- endcomment -%}
-  <aside class="rail">
-    {% if a.photo %}
-      <img class="rail__photo" src="{{ a.photo | relative_url }}" alt="{{ a.name }}">
-    {% else %}
-      <div class="rail__photo rail__photo--empty" aria-hidden="true">PHOTO</div>
-    {% endif %}
-
-    <h1 class="rail__name">{{ a.name | default: site.title }}</h1>
-    {%- if a.role or a.affiliation %}
-    <p class="rail__affil">
-      {%- if a.role %}{{ a.role }}<br>{% endif -%}
-      {{ a.affiliation }}
-    </p>
-    {%- endif %}
-
-    <ul class="rail__links">
-      {% if a.email %}<li><a href="mailto:{{ a.email }}">{% include icon.html name="email" %}<span>Email</span></a></li>{% endif %}
-      {% if a.github %}<li><a href="https://github.com/{{ a.github }}">{% include icon.html name="github" %}<span>GitHub</span></a></li>{% endif %}
-      {% if a.linkedin %}<li><a href="https://www.linkedin.com/in/{{ a.linkedin }}">{% include icon.html name="linkedin" %}<span>LinkedIn</span></a></li>{% endif %}
-      {%- comment -%}
-        Scholar, ORCID and CV are deliberately left out. _includes/icon.html still
-        carries their icons, so re-adding one is a single line:
-        {% if a.scholar %}<li><a href="{{ a.scholar }}">{% include icon.html name="scholar" %}<span>Google Scholar</span></a></li>{% endif %}
-        {% if a.orcid %}<li><a href="{{ a.orcid }}">{% include icon.html name="orcid" %}<span>ORCID</span></a></li>{% endif %}
-        {% if a.cv %}<li><a href="{{ a.cv | relative_url }}">{% include icon.html name="cv" %}<span>CV</span></a></li>{% endif %}
-      {%- endcomment -%}
-    </ul>
-
-    <nav class="rail__nav" aria-label="Sections">
-      <ul class="rail__toc" id="toc">
+{%- comment -%} ── sticky top bar: section links only; the name and affiliation
+     are in the About hero, so the bar does not repeat them ── {%- endcomment -%}
+<header class="site-header">
+  <div class="container header-inner">
+    <nav class="nav-links" aria-label="Sections">
+      <ul>
         {%- for item in site.data.navigation.main -%}
           {%- assign show = true -%}
           {%- if item.requires -%}
@@ -82,21 +55,16 @@
         {%- endfor -%}
       </ul>
     </nav>
-  </aside>
+  </div>
+</header>
 
-  {%- comment -%} ── content: _pages/about.md ── {%- endcomment -%}
-  <main class="content" id="main">
-    {{ content }}
-  </main>
+{%- comment -%} ── content: _pages/about.md ── {%- endcomment -%}
+<main class="content" id="main">
+  {{ content }}
+</main>
 
-</div>
-
-{%- comment -%}
-  Outside .frame on purpose: inside the grid it shared a row with the sticky
-  rail, and at the bottom of the page the two overlapped.
-{%- endcomment -%}
 <footer class="foot">
-  <div class="foot__inner">
+  <div class="container foot__inner">
     <span class="foot__left">
       <span>&copy; {{ site.time | date: '%Y' }} {{ a.name | default: site.title }}</span>
       <span class="foot__credit">
@@ -115,45 +83,6 @@
     </a>
   </div>
 </footer>
-
-<script>
-/* Marks the section currently in view in the sticky table of contents.
-   Progressive enhancement only - the table of contents works without it. */
-(function () {
-  var toc = document.getElementById('toc');
-  if (!toc || !('IntersectionObserver' in window)) return;
-
-  var links = {};
-  Array.prototype.forEach.call(toc.querySelectorAll('a[href*="#"]'), function (a) {
-    links[a.getAttribute('href').split('#')[1]] = a;
-  });
-
-  var sections = Object.keys(links)
-    .map(function (id) { return document.getElementById(id); })
-    .filter(Boolean);
-  if (!sections.length) return;
-
-  var visible = new Set();
-
-  function paint() {
-    var current = sections.filter(function (s) { return visible.has(s.id); })[0];
-    Object.keys(links).forEach(function (id) {
-      if (current && id === current.id) links[id].setAttribute('aria-current', 'true');
-      else links[id].removeAttribute('aria-current');
-    });
-  }
-
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) visible.add(e.target.id);
-      else visible.delete(e.target.id);
-    });
-    paint();
-  }, { rootMargin: '-10% 0px -70% 0px' });
-
-  sections.forEach(function (s) { io.observe(s); });
-})();
-</script>
 
 </body>
 </html>

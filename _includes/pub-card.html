@@ -1,18 +1,34 @@
 {%- comment -%}
-  One publication row (형식 B: 텍스트 우선 목록).
+  One publication card: thumbnail on the left, a venue pill above the title.
   Call as: {% include pub-card.html entry=entry %}
   Schema is documented at the top of _data/publications.yml.
 {%- endcomment -%}
 {%- assign e = include.entry -%}
 
 {%- comment -%} Link order and labels. Only keys with a value are rendered. {%- endcomment -%}
-{%- assign link_defs = "arxiv|arXiv,openreview|OpenReview,pdf|PDF,code|Code,project|Project,demo|Demo,video|Video,poster|Poster,slides|Slides" | split: "," -%}
+{%- assign link_defs = "arxiv|arXiv,openreview|OpenReview,pdf|Paper,code|Code,project|Project,demo|Demo,video|Video,poster|Poster,slides|Slides" | split: "," -%}
+
+{%- comment -%} Pill text: an explicit tag wins, then the badge, then the year,
+so every card is headed by one short label. {%- endcomment -%}
+{%- if e.tag and e.tag != "" -%}{%- assign pill = e.tag -%}
+{%- elsif e.badge and e.badge != "" -%}{%- assign pill = e.badge -%}
+{%- else -%}{%- assign pill = e.year -%}{%- endif -%}
 
 <article class="pub{% if e.media %} pub--media{% endif %}">
 
-  <div class="pub__year">{{ e.year }}</div>
+  {%- if e.media %}
+  <div class="pub__media">
+    {%- if e.media_type == "video" -%}
+      <video src="{{ e.media | relative_url }}" autoplay loop muted playsinline></video>
+    {%- else -%}
+      <img src="{{ e.media | relative_url }}" alt="" loading="lazy">
+    {%- endif -%}
+  </div>
+  {%- endif %}
 
   <div class="pub__body">
+    <p class="pub__pill">{{ pill }}{% if e.tag and e.badge and e.badge != "" %} {{ e.badge }}{% endif %}</p>
+
     <h3 class="pub__title">
       {%- comment -%} The title is plain text; the paper is reached through the link row below. {%- endcomment -%}
       {%- if e.ref %}<span class="pub__ref">[{{ e.ref }}]</span> {% endif -%}
@@ -21,7 +37,7 @@
 
     <p class="pub__authors">{{ e.authors | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>
 
-    <p class="pub__venue">{{ e.venue }}{% if e.note %} <span class="pub__vnote">({{ e.note }})</span>{% endif %}{% if e.badge %}<span class="pub__badge">{{ e.badge }}</span>{% endif %}</p>
+    <p class="pub__venue">{{ e.venue }}{% if e.note %} <span class="pub__vnote">({{ e.note }})</span>{% endif %}</p>
 
     {%- assign shown = 0 -%}
     {%- capture links -%}
@@ -45,15 +61,5 @@
     </details>
     {%- endif %}
   </div>
-
-  {%- if e.media %}
-  <div class="pub__media">
-    {%- if e.media_type == "video" -%}
-      <video src="{{ e.media | relative_url }}" autoplay loop muted playsinline></video>
-    {%- else -%}
-      <img src="{{ e.media | relative_url }}" alt="" loading="lazy">
-    {%- endif -%}
-  </div>
-  {%- endif %}
 
 </article>

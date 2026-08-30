@@ -1,8 +1,8 @@
-# Sections of the single home page, in order. Rendered as the sidebar table
-# of contents by _layouts/home.html.
+# Sections of the single home page, in order. Rendered as the links in the
+# sticky top bar by _layouts/home.html.
 #
-# Optional `short:` overrides what the sidebar shows, for when a section heading
-# is longer than the rail wants.
+# Optional `short:` overrides what the top bar shows, for when a section heading
+# is longer than the bar wants.
 #
 # An entry with `requires:` only appears when _data/publications.yml has at
 # least one item whose `section` matches it.
@@ -12,9 +12,6 @@ main:
 
   - title: "Research Interests"
     url: "#interests"
-
-  - title: "Education"
-    url: "#education"
 
   - title: "Experiences"
     url: "#experiences"
