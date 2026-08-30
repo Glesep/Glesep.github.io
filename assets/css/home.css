@@ -383,6 +383,10 @@ a:hover { text-decoration-color: var(--accent-soft); }
   gap: .75rem;
 }
 .foot__credit { text-align: right; }
+.foot__left { display: inline-flex; align-items: center; gap: .6rem; }
+/* The badge carries its own underline-free link styling. */
+.foot__hits { display: inline-flex; text-decoration: none; }
+.foot__hits img { display: block; height: 1.25em; width: auto; }
 .foot a {
   color: inherit;
   text-decoration: underline;
