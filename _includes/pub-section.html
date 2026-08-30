@@ -1,0 +1,30 @@
+{%- comment -%}
+  Renders one publication section, or nothing at all when it has no entries.
+  Call as: {% include pub-section.html section="conference" id="publications" title="Publications" %}
+
+  Entries are grouped by their `group` field, in the order the groups first
+  appear in _data/publications.yml. Within a group, file order is display order.
+{%- endcomment -%}
+{%- assign all = site.data.publications -%}
+{%- if all -%}
+  {%- assign entries = all | where: "section", include.section -%}
+  {%- if entries.size > 0 -%}
+<section id="{{ include.id }}">
+  <h2 class="section__hd">{{ include.title }}</h2>
+
+  <p class="pub__legend">*: Equal contribution, &dagger;: Corresponding author</p>
+
+  {%- assign groups = entries | group_by: "group" -%}
+  {%- for g in groups %}
+    {%- if g.name != "" %}
+  <h3 class="subhd">{{ g.name }}</h3>
+    {%- endif %}
+  <div class="pubs">
+    {%- for entry in g.items -%}
+      {%- include pub-card.html entry=entry -%}
+    {%- endfor -%}
+  </div>
+  {%- endfor %}
+</section>
+  {%- endif -%}
+{%- endif -%}

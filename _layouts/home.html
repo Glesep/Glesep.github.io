@@ -1,0 +1,149 @@
+{%- assign a = site.data.author -%}
+<!doctype html>
+<html lang="{{ site.locale | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+  {% if a.name %}<meta name="author" content="{{ a.name }}">{% endif %}
+
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  {% if a.og_image %}
+  <meta property="og:image" content="{{ a.og_image | absolute_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  {% endif %}
+
+  <link rel="icon" href="{{ '/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="icon" href="{{ '/images/favicon-32x32.png' | relative_url }}" sizes="32x32">
+  <link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}" sizes="any">
+  <link rel="apple-touch-icon" href="{{ '/images/apple-touch-icon-180x180.png' | relative_url }}">
+  <link rel="manifest" href="{{ '/images/manifest.json' | relative_url }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400..800;1,400..500&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="frame">
+
+  {%- comment -%} ── left rail: identity + sticky table of contents ── {%- endcomment -%}
+  <aside class="rail">
+    {% if a.photo %}
+      <img class="rail__photo" src="{{ a.photo | relative_url }}" alt="{{ a.name }}">
+    {% else %}
+      <div class="rail__photo rail__photo--empty" aria-hidden="true">PHOTO</div>
+    {% endif %}
+
+    <h1 class="rail__name">{{ a.name | default: site.title }}</h1>
+    {%- if a.role or a.affiliation %}
+    <p class="rail__affil">
+      {%- if a.role %}{{ a.role }}<br>{% endif -%}
+      {{ a.affiliation }}
+    </p>
+    {%- endif %}
+
+    <ul class="rail__links">
+      {% if a.email %}<li><a href="mailto:{{ a.email }}">{% include icon.html name="email" %}<span>Email</span></a></li>{% endif %}
+      {% if a.github %}<li><a href="https://github.com/{{ a.github }}">{% include icon.html name="github" %}<span>GitHub</span></a></li>{% endif %}
+      {% if a.linkedin %}<li><a href="https://www.linkedin.com/in/{{ a.linkedin }}">{% include icon.html name="linkedin" %}<span>LinkedIn</span></a></li>{% endif %}
+      {%- comment -%}
+        Scholar, ORCID and CV are deliberately left out. _includes/icon.html still
+        carries their icons, so re-adding one is a single line:
+        {% if a.scholar %}<li><a href="{{ a.scholar }}">{% include icon.html name="scholar" %}<span>Google Scholar</span></a></li>{% endif %}
+        {% if a.orcid %}<li><a href="{{ a.orcid }}">{% include icon.html name="orcid" %}<span>ORCID</span></a></li>{% endif %}
+        {% if a.cv %}<li><a href="{{ a.cv | relative_url }}">{% include icon.html name="cv" %}<span>CV</span></a></li>{% endif %}
+      {%- endcomment -%}
+    </ul>
+
+    <nav class="rail__nav" aria-label="Sections">
+      <ul class="rail__toc" id="toc">
+        {%- for item in site.data.navigation.main -%}
+          {%- assign show = true -%}
+          {%- if item.requires -%}
+            {%- assign show = false -%}
+            {%- if site.data.publications -%}
+              {%- assign matches = site.data.publications | where: "section", item.requires -%}
+              {%- if matches.size > 0 -%}{%- assign show = true -%}{%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+          {%- if show -%}
+        <li><a href="{{ item.url | prepend: '/' | relative_url }}">{{ item.short | default: item.title }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </aside>
+
+  {%- comment -%} ── content: _pages/about.md ── {%- endcomment -%}
+  <main class="content" id="main">
+    {{ content }}
+  </main>
+
+</div>
+
+{%- comment -%}
+  Outside .frame on purpose: inside the grid it shared a row with the sticky
+  rail, and at the bottom of the page the two overlapped.
+{%- endcomment -%}
+<footer class="foot">
+  <div class="foot__inner">
+    <span>&copy; {{ site.time | date: '%Y' }} {{ a.name | default: site.title }}</span>
+    <span class="foot__credit">
+      Built with <a href="https://jekyllrb.com/" rel="nofollow">Jekyll</a>,
+      forked from <a href="https://github.com/academicpages/academicpages.github.io">academicpages</a>.
+      Icons by <a href="https://fontawesome.com/" rel="nofollow">Font Awesome</a>.
+    </span>
+  </div>
+</footer>
+
+<script>
+/* Marks the section currently in view in the sticky table of contents.
+   Progressive enhancement only - the table of contents works without it. */
+(function () {
+  var toc = document.getElementById('toc');
+  if (!toc || !('IntersectionObserver' in window)) return;
+
+  var links = {};
+  Array.prototype.forEach.call(toc.querySelectorAll('a[href*="#"]'), function (a) {
+    links[a.getAttribute('href').split('#')[1]] = a;
+  });
+
+  var sections = Object.keys(links)
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+  if (!sections.length) return;
+
+  var visible = new Set();
+
+  function paint() {
+    var current = sections.filter(function (s) { return visible.has(s.id); })[0];
+    Object.keys(links).forEach(function (id) {
+      if (current && id === current.id) links[id].setAttribute('aria-current', 'true');
+      else links[id].removeAttribute('aria-current');
+    });
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) visible.add(e.target.id);
+      else visible.delete(e.target.id);
+    });
+    paint();
+  }, { rootMargin: '-10% 0px -70% 0px' });
+
+  sections.forEach(function (s) { io.observe(s); });
+})();
+</script>
+
+</body>
+</html>

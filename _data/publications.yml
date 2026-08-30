@@ -1,0 +1,52 @@
+# ---------------------------------------------------------------------------
+# Publications and preprints.
+#
+# Rendered by _includes/pub-section.html -> _includes/pub-card.html.
+# Never hardcode a paper into _pages/about.md - add it here instead.
+#
+# Display order = the order of entries in this file. Put the newest first.
+# A section with no entries is not rendered at all (no empty heading, and the
+# link disappears from the sidebar table of contents).
+#
+# Fields
+#   title       Paper title. Required.
+#   authors     Author list. Bold yourself with **Your Name**; mark equal
+#               contribution with a trailing asterisk: **Your Name**\*, A. Lee\*
+#   venue       Where it appeared, e.g. "ACL 2026" or "arXiv preprint".
+#   year        Shown in the left margin. Required.
+#   badge       Optional short tag next to the venue: "Oral", "Spotlight".
+#   media       Optional teaser, site-root path: /images/papers/foo.png
+#   media_type  "image" (default) or "video"
+#   links       Only keys with a value are rendered, always in this order:
+#                 arxiv, openreview, pdf, code, project, demo, video,
+#                 poster, slides
+#   bibtex      Optional. Rendered inside a <details> toggle. No JavaScript.
+#   ref         Optional reference id shown before the title, e.g. "W1" -> [W1].
+#               W = workshop, C = conference, J = journal, by convention.
+#   group       Optional sub-heading the entry is filed under, e.g.
+#               "International Workshop Papers". Entries are grouped in the
+#               order the groups first appear in this file.
+#   note        Optional parenthetical after the venue. Unused right now.
+#
+#   Author markers: put * after a first author and \u2020 after a corresponding
+#   author. A legend appears above the list automatically when either is used.
+#
+#   section     "conference" -> the Publications section. This is the only
+#               section rendered; preprints go in the same list with
+#               venue: "arXiv preprint". To split them back out, re-add the
+#               include in about.md and the nav entry with requires: preprint.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+
+- title: "Mitigating Visual Hallucinations for Reliable Multimodal Agents"
+  authors: "Sohyeon Kim, **Sang Yeon Yoon**, Kyeongbo Kong†"
+  venue: "ICML Workshop AIWILD, Jul. 2026"
+  year: 2026
+  ref: "W1"
+  group: "International Workshop Papers"
+  media: /images/papers/aiwild-method.png
+  media_type: image
+  links:
+    pdf: "https://openreview.net/pdf?id=n5v4ML21pB"
+  section: conference

@@ -1,0 +1,29 @@
+# ---------------------------------------------------------------------------
+# Profile shown in the sidebar of _layouts/home.html.
+#
+# This lives in _data/ rather than _config.yml on purpose: Jekyll reloads
+# _data files while `jekyll serve` is running, but reads _config.yml only once
+# at startup. Editing this file shows up on the next refresh - no restart.
+# ---------------------------------------------------------------------------
+
+name:    "Sang Yeon Yoon"
+# Two fields so the line always breaks after the role, rather than wherever
+# the sidebar happens to run out of room.
+role:        "Undergraduate"
+affiliation: "Pukyong National University"
+photo:   /images/profile.jpg      # site-root path, or leave blank for a placeholder
+
+# Sidebar links. Only the ones with a value are rendered, in this order.
+email:    "yskite09@gmail.com"
+github:   "Glesep"                # username only
+linkedin: "sang-yeon-yoon-96316241b"  # username only, the part after
+                                      # linkedin.com/in/ . Blank = no link.
+
+# Kept out of the sidebar for now. Fill one in, then uncomment its line in
+# the Liquid comment block in _layouts/home.html to bring it back.
+scholar:                          # full URL
+orcid:                            # full URL
+cv:                               # e.g. /files/cv.pdf
+
+# Social preview image for link unfurls, e.g. /images/og.png
+og_image:

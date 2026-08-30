@@ -1,33 +1,25 @@
-# The following is the order of the links in the header of the website.
+# Sections of the single home page, in order. Rendered as the sidebar table
+# of contents by _layouts/home.html.
 #
-# Changing the order here will adjust the order and you can also add additional
-# links. Removing a link prevents it from showing in the header, but does not
-# prevent it from being included in the site.
+# Optional `short:` overrides what the sidebar shows, for when a section heading
+# is longer than the rail wants.
 #
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
-
+# An entry with `requires:` only appears when _data/publications.yml has at
+# least one item whose `section` matches it.
 main:
-  - title: "Publications"
-    url: /publications/
+  - title: "About"
+    url: "#about"
 
-  - title: "Talks"
-    url: /talks/    
+  - title: "Research Interests"
+    url: "#interests"
 
-  - title: "Teaching"
-    url: /teaching/    
-    
-  - title: "Portfolio"
-    url: /portfolio/
-        
-  - title: "Blog Posts"
-    url: /year-archive/
-    
-  - title: "CV"
-    url: /cv/
-    
-  # - title: "CV"
-  #   url: /cv-json/
-    
-  - title: "Guide"
-    url: /markdown/
+  - title: "Education"
+    url: "#education"
+
+  - title: "Experiences"
+    url: "#experiences"
+
+  - title: "Selected Publications"
+    short: "Publications"
+    url: "#publications"
+    requires: conference

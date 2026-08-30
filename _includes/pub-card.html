@@ -1,0 +1,59 @@
+{%- comment -%}
+  One publication row (형식 B: 텍스트 우선 목록).
+  Call as: {% include pub-card.html entry=entry %}
+  Schema is documented at the top of _data/publications.yml.
+{%- endcomment -%}
+{%- assign e = include.entry -%}
+
+{%- comment -%} Link order and labels. Only keys with a value are rendered. {%- endcomment -%}
+{%- assign link_defs = "arxiv|arXiv,openreview|OpenReview,pdf|PDF,code|Code,project|Project,demo|Demo,video|Video,poster|Poster,slides|Slides" | split: "," -%}
+
+<article class="pub{% if e.media %} pub--media{% endif %}">
+
+  <div class="pub__year">{{ e.year }}</div>
+
+  <div class="pub__body">
+    <h3 class="pub__title">
+      {%- comment -%} The title is plain text; the paper is reached through the link row below. {%- endcomment -%}
+      {%- if e.ref %}<span class="pub__ref">[{{ e.ref }}]</span> {% endif -%}
+      {{ e.title }}
+    </h3>
+
+    <p class="pub__authors">{{ e.authors | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>
+
+    <p class="pub__venue">{{ e.venue }}{% if e.note %} <span class="pub__vnote">({{ e.note }})</span>{% endif %}{% if e.badge %}<span class="pub__badge">{{ e.badge }}</span>{% endif %}</p>
+
+    {%- assign shown = 0 -%}
+    {%- capture links -%}
+      {%- for def in link_defs -%}
+        {%- assign parts = def | split: "|" -%}
+        {%- assign key = parts[0] -%}
+        {%- assign url = e.links[key] -%}
+        {%- if url and url != "" -%}
+          {%- if shown > 0 -%}<span class="sep">&middot;</span>{%- endif -%}
+          <a href="{{ url }}">{{ parts[1] }}</a>
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if shown > 0 %}<p class="pub__links">{{ links }}</p>{% endif -%}
+
+    {%- if e.bibtex %}
+    <details class="pub__bib">
+      <summary>bibtex</summary>
+      <pre>{{ e.bibtex | strip | escape }}</pre>
+    </details>
+    {%- endif %}
+  </div>
+
+  {%- if e.media %}
+  <div class="pub__media">
+    {%- if e.media_type == "video" -%}
+      <video src="{{ e.media | relative_url }}" autoplay loop muted playsinline></video>
+    {%- else -%}
+      <img src="{{ e.media | relative_url }}" alt="" loading="lazy">
+    {%- endif -%}
+  </div>
+  {%- endif %}
+
+</article>
