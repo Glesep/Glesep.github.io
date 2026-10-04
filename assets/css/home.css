@@ -388,18 +388,38 @@ a:hover { text-decoration-color: var(--accent-soft); }
   border-radius: 8px;
   background: var(--sunk);
 }
+/* `media_wide: true`: a wide figure would be a thin strip in that column, so
+   the column is widened until a strip-shaped figure, uncropped, stands about
+   as tall as the text beside it. */
+.pub--wide {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 4fr);
+  align-items: stretch;
+}
+/* The text alone sets the height of a wide card, so the cards match whatever
+   the figure's proportions. The figure is taken out of flow and fitted, whole
+   and centred, into the column beside the text: a strip fills the width, a
+   squarer figure fills the height. */
+.pub--wide .pub__media { position: relative; }
+.pub--wide .pub__media img,
+.pub--wide .pub__media video {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: auto;
+  max-height: 100%;
+}
 
 /* Card text is structured, not prose: `.content p` (a 1rem trailing margin and
    a reading measure) would otherwise win on specificity over every rule below,
    so the paragraphs here are scoped under .pub__body to outrank it. */
 .pub__body p { max-width: none; }
 
-/* Venue pill: an explicit `tag`, else the badge, else the year. */
+/* Venue pill: an explicit `tag`, else the badge, else the year. Shown as
+   written, not uppercased, so a name like NeurIPS keeps its own casing. */
 .pub__body .pub__pill {
   display: inline-block;
   font: 600 .68rem/1 var(--body);
   letter-spacing: .09em;
-  text-transform: uppercase;
   color: var(--accent);
   background: var(--accent-tint);
   border-radius: 999px;
@@ -541,4 +561,8 @@ a:hover { text-decoration-color: var(--accent-soft); }
     padding: 1.1rem 1.1rem;
   }
   .pub__media { max-width: 20rem; }
+  /* Stacked, a wide figure spans the card at its own proportions. */
+  .pub--wide .pub__media { max-width: none; }
+  .pub--wide .pub__media img,
+  .pub--wide .pub__media video { position: static; width: 100%; max-height: none; }
 }

@@ -14,7 +14,7 @@ so every card is headed by one short label. {%- endcomment -%}
 {%- elsif e.badge and e.badge != "" -%}{%- assign pill = e.badge -%}
 {%- else -%}{%- assign pill = e.year -%}{%- endif -%}
 
-<article class="pub{% if e.media %} pub--media{% endif %}">
+<article class="pub{% if e.media %} pub--media{% if e.media_wide %} pub--wide{% endif %}{% endif %}">
 
   {%- if e.media %}
   <div class="pub__media">

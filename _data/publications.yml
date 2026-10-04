@@ -16,10 +16,15 @@
 #   year        Required. Used as the pill text when neither tag nor badge is
 #               set.
 #   tag         Optional short label for the pill at the top of the card, e.g.
-#               "ICML 2026 Workshop". Falls back to badge, then year.
+#               "NeurIPS 2026". Shown exactly as written, never uppercased.
+#               Falls back to badge, then year.
 #   badge       Optional status appended to the pill: "Oral", "Spotlight".
 #   media       Optional teaser, site-root path: /images/papers/foo.png
 #   media_type  "image" (default) or "video"
+#   media_wide  Optional. true widens the thumbnail column so a wide figure
+#               shows whole at a readable size instead of as a thin strip.
+#               The text sets the card height: a squarer figure is scaled
+#               to that height rather than making its card taller.
 #   links       Only keys with a value are rendered, always in this order:
 #                 arxiv, openreview, pdf, code, project, demo, video,
 #                 poster, slides
@@ -42,14 +47,26 @@
 
 # ---------------------------------------------------------------------------
 
+- title: "Focus Matters: Attention-Value Dynamics for Hallucination Mitigation in Vision-Language Models"
+  authors: "Sohyeon Kim, **Sang Yeon Yoon**, Kyeongbo Kong†"
+  venue: "NeurIPS, Dec. 2026"
+  year: 2026
+  tag: "NeurIPS 2026"
+  group: "Conference"
+  media: /images/papers/focus-matters.png
+  media_type: image
+  media_wide: true
+  section: conference
+
 - title: "Mitigating Visual Hallucinations for Reliable Multimodal Agents"
   authors: "Sohyeon Kim, **Sang Yeon Yoon**, Kyeongbo Kong†"
   venue: "ICML Workshop AIWILD, Jul. 2026"
   year: 2026
-  tag: "ICML 2026 Workshop"
+  tag: "ICML 2026 WORKSHOP"
   group: "Workshop"
-  media: /images/papers/aiwild-method.png
+  media: /images/papers/aiwild-teaser.png
   media_type: image
+  media_wide: true
   links:
     pdf: "https://openreview.net/pdf?id=n5v4ML21pB"
   section: conference
